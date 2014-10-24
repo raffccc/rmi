@@ -7,6 +7,13 @@ import java.rmi.registry.LocateRegistry;
 public class HelloWorldServer {
 
 	public static void main(String[] args) throws Exception {
+		/*
+		 * If you want Serializable classes to be downloaded in the client machines
+		 * you need to change the security level. This may not work, then you
+		 * have to change the security policy.
+		 */
+//		System.setSecurityManager(new RMISecurityManager());
+		
 		System.out.println("RMI server started");
 		
 		try {
@@ -31,7 +38,7 @@ public class HelloWorldServer {
 		 * be published and the registry will still be alive until
 		 * the object be unexported.
 		 */
-		Naming.rebind("//localhost/HelloWorld", obj);
+		Naming.rebind("HelloWorld", obj);
 //		UnicastRemoteObject.unexportObject(obj, true);
 		System.out.println("RmiServer bound in registry");
 	}
